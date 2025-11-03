@@ -499,6 +499,7 @@ class Qwen2VLChat(Qwen2VLPromptMixin, BaseModel):
 
         if self.verbose:
             print(f'\033[32m{response}\033[0m')
+        print(response)
         return response
 
     def generate_inner_lmdeploy(self, message, dataset=None):
