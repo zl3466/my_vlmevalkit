@@ -5,6 +5,7 @@ import sys
 import warnings
 import math
 import logging
+import re
 
 import torch
 from transformers import StoppingCriteria
@@ -33,6 +34,14 @@ def ensure_video_url(video: str) -> str:
     if os.path.exists(video):
         return 'file://' + video
     raise ValueError(f'Invalid video: {video}')
+
+
+def extract_answer(text):
+    pattern = r'<answer>\s*(.*?)\s*</answer>'
+    match = re.search(pattern, text, re.DOTALL)
+    if match:
+        return match.group(1).strip()
+    return text
 
 
 def create_image_content(image_path, min_pixels, max_pixels):
@@ -497,9 +506,11 @@ class Qwen2VLChat(Qwen2VLPromptMixin, BaseModel):
             if end is not None:
                 response = resp[:end]
 
+        response = extract_answer(response)
+
         if self.verbose:
             print(f'\033[32m{response}\033[0m')
-        print(response)
+        # print(response)
         return response
 
     def generate_inner_lmdeploy(self, message, dataset=None):
@@ -516,6 +527,7 @@ class Qwen2VLChat(Qwen2VLPromptMixin, BaseModel):
         assert len(messages_list) == 1
         response = self.model(messages_list, gen_config=gen_config)[0]
         response = response.text
+        response = extract_answer(response)
         return response
 
     def generate_inner_vllm(self, message, dataset=None):
@@ -608,6 +620,8 @@ class Qwen2VLChat(Qwen2VLPromptMixin, BaseModel):
                     break
             if end is not None:
                 generated_text = resp[:end]
+
+        generated_text = extract_answer(generated_text)
 
         if self.verbose:
             print(f'\033[32m{generated_text}\033[0m')
@@ -733,6 +747,8 @@ class Qwen2VLChatAguvis(Qwen2VLChat):
                     break
             if end is not None:
                 response = resp[:end]
+
+        response = extract_answer(response)
 
         if self.verbose:
             print(f"\033[32m{response}\033[0m")
