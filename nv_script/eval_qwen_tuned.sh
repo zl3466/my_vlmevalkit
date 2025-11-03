@@ -62,6 +62,6 @@ export HF_HUB_CACHE="/lustre/fsw/portfolios/nvr/users/ymingli/cache/huggingface/
 export SPLIT_THINK=True
 export MMEVAL_ROOT="./outputs/$mode"
 
-cd "/lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/github/all_angles_bench/VLMEvalkit"
+cd "/lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/github/my_vlmevalkit"
 
 torchrun --nproc-per-node=$NUM_GPUS run.py --config "$CONFIG_FILE" --reuse --reuse-commit-id $COMMIT_ID
