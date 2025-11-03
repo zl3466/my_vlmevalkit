@@ -253,11 +253,11 @@ def main():
         model = None
         date, commit_id = timestr('day'), githash(digits=8)
 
-        if args.reuse_commit_id is not None:
-            commit_id = args.reuse_commit_id
+        if args.reuse_eval_id is not None:
+            eval_id = args.reuse_commit_id
             logger.info(f'Using provided commit_id: {commit_id}')
-
-        eval_id = f"T{date}_G{commit_id}"
+        else:
+            eval_id = f"G{commit_id}"
 
         pred_root = osp.join(args.work_dir, model_name, eval_id)
         pred_root_meta = osp.join(args.work_dir, model_name)
