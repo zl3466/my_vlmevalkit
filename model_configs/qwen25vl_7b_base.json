@@ -7,13 +7,22 @@
             "max_new_tokens": 1024,
             "top_p": 0.9,
             "top_k": 1,
-            "repetition_penalty": 1.0
+            "repetition_penalty": 1.0,
+            "system_prompt": "You a helpful assistant with excellent reasoning ability. A user asks you a question, and you should try to solve it. You should first think about the reasoning process in the mind and then provides the user with the answer. The reasoning process and answer are enclosed within <think> </think> and <answer> </answer> tags, respectively, i.e., <think> reasoning process here </think> <answer> answer here </answer>"
         }
     },
     "data": {
-        "All_Angles_Bench": {
+        "MMBench_DEV_EN_V11": {
             "class": "ImageMCQDataset",
-            "dataset": "All_Angles_Bench"
+            "dataset": "MMBench_DEV_EN_V11"
+        },
+        "3DSRBench": {
+            "class": "ImageMCQDataset",
+            "dataset": "3DSRBench"
+        },
+        "LEGO": {
+            "class": "ImageMCQDataset",
+            "dataset": "LEGO"
         }
     }
 }
