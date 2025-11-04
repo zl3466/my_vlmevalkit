@@ -196,7 +196,7 @@ You can launch the evaluation by setting either --data and --model or --config.
         '--use-vllm', action='store_true', help='use vllm to generate, the flag is only supported in Llama4 for now')
     parser.add_argument('--use-verifier', action='store_true', help='use verifier to evaluate')
     # Commit ID: specify a commit ID to reuse results from a specific previous run
-    parser.add_argument('--reuse-commit-id', type=str, default=None, help='specify commit ID to reuse results from a specific previous run')
+    parser.add_argument('--reuse-eval-id', type=str, default=None, help='specify commit ID to reuse results from a specific previous run')
 
     args = parser.parse_args()
     return args
@@ -254,7 +254,7 @@ def main():
         date, commit_id = timestr('day'), githash(digits=8)
 
         if args.reuse_eval_id is not None:
-            eval_id = args.reuse_commit_id
+            eval_id = args.reuse_eval_id
             logger.info(f'Using provided commit_id: {commit_id}')
         else:
             eval_id = f"G{commit_id}"
