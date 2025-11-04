@@ -255,7 +255,7 @@ def main():
 
         if args.reuse_eval_id is not None:
             eval_id = args.reuse_eval_id
-            logger.info(f'Using provided commit_id: {commit_id}')
+            logger.info(f'Using provided eval_id: {eval_id}')
         else:
             eval_id = f"G{commit_id}"
 
