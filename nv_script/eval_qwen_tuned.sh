@@ -21,7 +21,7 @@ while [[ $# -gt 0 ]]; do
             CONFIG_FILE="$2"
             shift 2
             ;;
-        --reuse-commit-id)
+        --reuse-eval-id)
             COMMIT_ID="$2"
             shift 2
             ;;
@@ -64,4 +64,4 @@ export MMEVAL_ROOT="./outputs/$mode"
 
 cd "/lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/github/my_vlmevalkit"
 
-torchrun --nproc-per-node=$NUM_GPUS run.py --config "$CONFIG_FILE" --reuse --reuse-commit-id $COMMIT_ID
+torchrun --nproc-per-node=$NUM_GPUS run.py --config "$CONFIG_FILE" --reuse --reuse-eval-id $COMMIT_ID
