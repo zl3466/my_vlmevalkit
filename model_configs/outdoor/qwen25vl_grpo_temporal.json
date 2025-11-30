@@ -12,9 +12,17 @@
         }
     },
     "data": {
-        "All_Angles_Bench": {
+        "MMBench_DEV_EN_V11": {
             "class": "ImageMCQDataset",
-            "dataset": "All_Angles_Bench"
+            "dataset": "MMBench_DEV_EN_V11"
+        },
+        "3DSRBench": {
+            "class": "ImageMCQDataset",
+            "dataset": "3DSRBench"
+        },
+        "LEGO": {
+            "class": "ImageMCQDataset",
+            "dataset": "LEGO"
         }
     }
 }
