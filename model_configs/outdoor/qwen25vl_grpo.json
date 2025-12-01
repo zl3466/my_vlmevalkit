@@ -17,11 +17,11 @@
             "dataset": "MMBench_DEV_EN_V11"
         },
         "3DSRBench": {
-            "class": "ImageMCQDataset",
+            "class": "_3DSRBench",
             "dataset": "3DSRBench"
         },
         "LEGO": {
-            "class": "ImageMCQDataset",
+            "class": "LEGO",
             "dataset": "LEGO"
         }
     }
