@@ -3,6 +3,7 @@
         "7B+sft+grpo": {
             "class": "Qwen2VLChat",
             "model_path": "/lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/log/VOLM_new/outdoor/out_sft_gr_1500_20251114_094613/ckpt",
+            "use_vllm": true,
             "temperature": 0.01,
             "max_new_tokens": 1024,
             "top_p": 0.9,
