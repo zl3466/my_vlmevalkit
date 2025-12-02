@@ -16,13 +16,21 @@
             "class": "ImageMCQDataset",
             "dataset": "MMBench_DEV_EN_V11"
         },
-        "3DSRBench": {
-            "class": "_3DSRBench",
-            "dataset": "3DSRBench"
-        },
         "LEGO": {
             "class": "LEGO",
             "dataset": "LEGO"
+        },
+        "BLINK": {
+            "class": "ImageMCQDataset",
+            "dataset": "BLINK"
+        },
+        "MMSIBench_circular": {
+            "class": "ImageMCQDataset",
+            "dataset": "MMSIBench_circular"
+        },
+        "Spatial457": {
+            "class": "Spatial457",
+            "dataset": "Spatial457"
         }
     }
 }
