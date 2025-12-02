@@ -56,7 +56,7 @@ echo "Using $NUM_GPUS GPU(s)"
 export PYTHONPATH="/home/ymingli/.local/lib/python3.10/site-packages:$PYTHONPATH"
 # Source conda and activate environment
 source /lustre/fsw/portfolios/nvr/users/ymingli/miniconda3/etc/profile.d/conda.sh
-conda activate allanb
+conda activate vlmevalkit
 export HF_HUB_CACHE="/lustre/fsw/portfolios/nvr/users/ymingli/cache/huggingface/hub"
 #export OPENAI_API_KEY="$OPENAI_API_KEY"
 export SPLIT_THINK=True
