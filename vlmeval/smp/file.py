@@ -74,6 +74,7 @@ def LMUDataRoot():
     home = osp.expanduser('~')
     root = osp.join(home, 'LMUData')
     os.makedirs(root, exist_ok=True)
+    print(f'\n********************\nLMUDataRoot: {root}\n********************\n')
     return root
 
 
