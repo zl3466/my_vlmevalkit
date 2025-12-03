@@ -64,7 +64,7 @@ conda activate allanb
 export HF_HUB_CACHE="/lustre/fsw/portfolios/nvr/users/ymingli/cache/huggingface/hub"
 export LMUData="/lustre/fsw/portfolios/nvr/users/ymingli/cache/LMUData"
 #export OPENAI_API_KEY="$OPENAI_API_KEY"
-# export GOOGLE_API_KEY="$GOOGLE_API_KEY"
+export GOOGLE_API_KEY="$GOOGLE_API_KEY"
 export SPLIT_THINK=True
 export MMEVAL_ROOT="./outputs/$mode"
 
