@@ -24,8 +24,8 @@ class Spatial457(ImageBaseDataset):
         'Spatial457': "1f24f5a7b2cadc3d33a8a66ecf92ca68"
     }
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self, dataset='Spatial457', **kwargs):
+        super().__init__(dataset=dataset, **kwargs)
 
         self.dataset_utils = Spatial457_utils()
 
