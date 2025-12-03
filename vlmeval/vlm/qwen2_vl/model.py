@@ -488,6 +488,8 @@ class Qwen2VLChat(Qwen2VLPromptMixin, BaseModel):
             generated_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False
         )
         response = out[0]
+        if self.verbose:
+            print(f'\033[33m[Full Response]\033[0m {response}')
         if self.post_process:
             resp = response.split('\\boxed{')[-1]
             lt = len(resp)
@@ -527,6 +529,8 @@ class Qwen2VLChat(Qwen2VLPromptMixin, BaseModel):
         assert len(messages_list) == 1
         response = self.model(messages_list, gen_config=gen_config)[0]
         response = response.text
+        if self.verbose:
+            print(f'\033[33m[Full Response]\033[0m {response}')
         response = extract_answer(response)
         return response
 
@@ -602,6 +606,9 @@ class Qwen2VLChat(Qwen2VLPromptMixin, BaseModel):
 
         for o in outputs:
             generated_text = o.outputs[0].text
+
+        if self.verbose:
+            print(f'\033[33m[Full Response]\033[0m {generated_text}')
 
         if self.post_process:
             resp = generated_text.split('\\boxed{')[-1]
