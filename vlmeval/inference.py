@@ -154,6 +154,12 @@ def infer_data(model, model_name, work_dir, dataset, out_file, verbose=False, ap
         else:
             struct = dataset.build_prompt(data.iloc[i])
 
+        # Store ground truth answer for verbose printing
+        if hasattr(model, 'verbose') and model.verbose and 'answer' in data.iloc[i]:
+            model.ground_truth = data.iloc[i]['answer']
+        else:
+            model.ground_truth = None
+
         # If `SKIP_ERR` flag is set, the model will skip the generation if error is encountered
         if os.environ.get('SKIP_ERR', False) == '1':
             FAIL_MSG = 'Failed to obtain answer'

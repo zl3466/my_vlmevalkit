@@ -512,6 +512,8 @@ class Qwen2VLChat(Qwen2VLPromptMixin, BaseModel):
 
         if self.verbose:
             print(f'\033[32m{response}\033[0m')
+            if hasattr(self, 'ground_truth') and self.ground_truth is not None:
+                print(f'\033[36m[Ground Truth]\033[0m {self.ground_truth}')
         # print(response)
         return response
 
@@ -532,6 +534,9 @@ class Qwen2VLChat(Qwen2VLPromptMixin, BaseModel):
         if self.verbose:
             print(f'\033[33m[Full Response]\033[0m {response}')
         response = extract_answer(response)
+        if self.verbose:
+            if hasattr(self, 'ground_truth') and self.ground_truth is not None:
+                print(f'\033[36m[Ground Truth]\033[0m {self.ground_truth}')
         return response
 
     def generate_inner_vllm(self, message, dataset=None):
@@ -632,6 +637,8 @@ class Qwen2VLChat(Qwen2VLPromptMixin, BaseModel):
 
         if self.verbose:
             print(f'\033[32m{generated_text}\033[0m')
+            if hasattr(self, 'ground_truth') and self.ground_truth is not None:
+                print(f'\033[36m[Ground Truth]\033[0m {self.ground_truth}')
         return generated_text
 
     def generate_inner(self, message, dataset=None):
