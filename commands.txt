@@ -1,0 +1,114 @@
+ssh -p 2022 jumpuser@60.205.59.157 (passwd: tsinghua)
+ssh cs-oci-ord-login-01
+ssh cs-oci-ord-dc-01
+pwd: Ly292845234!!
+
+# check  quota usage
+/cm/shared/apps/scripts/fs-quota-status
+
+# upload result to googledrive
+tar -cvzf outputs.tar.gz outputs
+rclone copy outputs.tar.gz "zlDrive:Litchi_Lab/VisualOdomLLM/vlmevalkit/" -P
+
+pip install flash-attn==2.7.4.post1 --no-build-isolation
+# if stuck at building wheels, most likely torch version is too new (e.g. 2.9), downgrade to 2.6
+
+$ GOOGLE API key
+AIzaSyCXjAOoEVaKriPMqH5NbJLmrYaMqmxPs40
+
+# ================= cu121 image =================
+srun \
+--partition interactive --gpus=1 --cpus-per-task=30 \
+--container-image=/lustre/fsw/portfolios/nvr/users/ymingli/dockers/2304py3.sqsh \
+--container-mounts=/lustre/:/lustre/,/lustre/fsw/portfolios/nvr/users/ymingli/miniconda3:/home/ymingli/miniconda3 \
+--time 240 \
+--account=nvr_av_verifvalid --pty bash
+
+# debug
+bash /lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/github/my_vlmevalkit/nv_script/eval_qwen_tuned.sh --config ./model_configs/qwen25vl_7b_base_debug.json --reuse-eval-id 00000000 --mode base"
+
+===================================================================================
+++++++++++++++++++++ 7B base ++++++++++++++++++++++++
+---- Qwen 7B ----
+submit_job --gpu 8 --cpu 64 --nodes 1 \
+--partition=grizzly,polar,polar3,polar4 \
+--account=nvr_av_foundations \
+--image=/lustre/fsw/portfolios/nvr/users/ymingli/dockers/2304py3.sqsh \
+--mounts=/lustre/:/lustre/,/lustre/fsw/portfolios/nvr/users/ymingli/miniconda3:/home/ymingli/miniconda3,/home/ymingli/.local:/home/ymingli/.local,/lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/models:/lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/models \
+--duration 4 \
+--dependency=singleton \
+--name VEv7B \
+--logdir /lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/log/vlmevalkit/7B/7B_$(date +%Y%m%d_%H%M%S) \
+--notimestamp \
+--exclusive \
+--autoresume_uninstrumented --autoresume_ignore_failure \
+--command "bash /lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/github/my_vlmevalkit/nv_script/eval_qwen_tuned.sh --config ./model_configs/qwen25vl_7b_base.json --reuse-eval-id 00000000 --mode base"
+
+
+
+=================================== OutDoor =====================================
+---- 7B+GRPO ----
+submit_job --gpu 8 --cpu 64 --nodes 1 \
+--partition=grizzly,polar,polar3,polar4 \
+--account=nvr_av_foundations \
+--image=/lustre/fsw/portfolios/nvr/users/ymingli/dockers/2304py3.sqsh \
+--mounts=/lustre/:/lustre/,/lustre/fsw/portfolios/nvr/users/ymingli/miniconda3:/home/ymingli/miniconda3,/home/ymingli/.local:/home/ymingli/.local,/lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/models:/lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/models \
+--duration 4 \
+--dependency=singleton \
+--name VEvGR \
+--logdir /lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/log/vlmevalkit/outdoor/7B+GRPO/7B+GRPO_$(date +%Y%m%d_%H%M%S) \
+--notimestamp \
+--exclusive \
+--autoresume_uninstrumented --autoresume_ignore_failure \
+--command "bash /lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/github/my_vlmevalkit/nv_script/eval_qwen_tuned.sh --config ./model_configs/outdoor/qwen25vl_grpo.json --reuse-eval-id 00000000 --mode outdoor"
+
+---- 7B+GRPO+temporal ----
+submit_job --gpu 8 --cpu 64 --nodes 1 \
+--partition=grizzly,polar,polar3,polar4 \
+--account=nvr_av_foundations \
+--image=/lustre/fsw/portfolios/nvr/users/ymingli/dockers/2304py3.sqsh \
+--mounts=/lustre/:/lustre/,/lustre/fsw/portfolios/nvr/users/ymingli/miniconda3:/home/ymingli/miniconda3,/home/ymingli/.local:/home/ymingli/.local,/lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/models:/lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/models \
+--duration 4 \
+--dependency=singleton \
+--name VEvGRt \
+--logdir /lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/log/vlmevalkit/outdoor/7B+GRP+temporal/7B+GRP+temporal_$(date +%Y%m%d_%H%M%S) \
+--notimestamp \
+--exclusive \
+--autoresume_uninstrumented --autoresume_ignore_failure \
+--command "bash /lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/github/my_vlmevalkit/nv_script/eval_qwen_tuned.sh --config ./model_configs/outdoor/qwen25vl_grpo_temporal.json --reuse-eval-id 00000000 --mode outdoor"
+
+---- 7B+SFT+GRPO ----
+submit_job --gpu 8 --cpu 64 --nodes 1 \
+--partition=grizzly,polar,polar3,polar4 \
+--account=nvr_av_foundations \
+--image=/lustre/fsw/portfolios/nvr/users/ymingli/dockers/2304py3.sqsh \
+--mounts=/lustre/:/lustre/,/lustre/fsw/portfolios/nvr/users/ymingli/miniconda3:/home/ymingli/miniconda3,/home/ymingli/.local:/home/ymingli/.local,/lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/models:/lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/models \
+--duration 4 \
+--dependency=singleton \
+--name VEvSFGR \
+--logdir /lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/log/vlmevalkit/outdoor/7B+SFT+GRPO/7B+SFT+GRPO_$(date +%Y%m%d_%H%M%S) \
+--notimestamp \
+--exclusive \
+--autoresume_uninstrumented --autoresume_ignore_failure \
+--command "bash /lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/github/my_vlmevalkit/nv_script/eval_qwen_tuned.sh --config ./model_configs/outdoor/qwen25vl_sft_grpo.json --reuse-eval-id 00000000 --mode outdoor"
+
+---- 7B+SFT+GRPO+temporal ----
+submit_job --gpu 8 --cpu 64 --nodes 1 \
+--partition=grizzly,polar,polar3,polar4 \
+--account=nvr_av_foundations \
+--image=/lustre/fsw/portfolios/nvr/users/ymingli/dockers/2304py3.sqsh \
+--mounts=/lustre/:/lustre/,/lustre/fsw/portfolios/nvr/users/ymingli/miniconda3:/home/ymingli/miniconda3,/home/ymingli/.local:/home/ymingli/.local,/lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/models:/lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/models \
+--duration 4 \
+--dependency=singleton \
+--name VEvSFGRt \
+--logdir /lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/log/vlmevalkit/outdoor/7B+SFT+GRP+temporal/7B+SFT+GRP+temporal_$(date +%Y%m%d_%H%M%S) \
+--notimestamp \
+--exclusive \
+--autoresume_uninstrumented --autoresume_ignore_failure \
+--command "bash /lustre/fsw/portfolios/nvr/users/ymingli/projects/playground/github/my_vlmevalkit/nv_script/eval_qwen_tuned.sh --config ./model_configs/outdoor/qwen25vl_sft_grpo_temporal.json --reuse-eval-id 00000000 --mode outdoor"
+
+
+find . -type f -size +1G -atime +90 -printf "%15s %15u %-20g last-accessed=%AF%p\n" | tee find.log
+find . -type f -size +3M -atime +90 -printf "%15s %15u %-20g last-accessed=%AF%p\n" | tee find.log
+du -h --max-depth=1
+/lustre/fsw/portfolios/nvr/projects/nvr_av_end2endav/users/ymingli
